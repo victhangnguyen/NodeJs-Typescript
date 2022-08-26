@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/victhangnguyen/NodeJs-Typescript/issues"
   },
-  "homepage": "https://github.com/victhangnguyen/NodeJs-Typescript#readme"
+  "homepage": "https://github.com/victhangnguyen/NodeJs-Typescript#readme",
+  "devDependencies": {
+    "ts-node": "^10.9.1"
+  }
 }
