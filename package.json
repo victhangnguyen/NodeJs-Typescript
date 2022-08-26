@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/victhangnguyen/NodeJs-Typescript#readme",
   "devDependencies": {
+    "nodemon": "^2.0.19",
     "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
   }
 }
