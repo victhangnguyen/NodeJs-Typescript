@@ -4,6 +4,9 @@ import todoRoutes from './routes/todos';
 
 const app = express();
 
+//! add Middleware (statis json of express)
+app.use(express.json());
+
 app.use('/todos', todoRoutes);
 
 //! We can also setup a Middle that will handle errors
