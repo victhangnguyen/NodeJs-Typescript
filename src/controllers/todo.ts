@@ -27,3 +27,54 @@ export const createTodo: RequestHandler = (req, res, next) => {
     createdTodo: newTodo,
   });
 };
+
+export const getTodos: RequestHandler = (req, res, next) => {
+  res.status(201).json({ todos: TODOS });
+};
+
+export const updateTodo: RequestHandler<{ todoId: string }> = (
+  req,
+  res,
+  next
+) => {
+  const todoId = req.params.todoId;
+
+  const updatedText = (req.body as { text: string }).text;
+  //! using TypeCasting,
+
+  const todoIndex = TODOS.findIndex((todo) => todo.id === todoId);
+
+  //! guard clause
+  if (todoIndex < 0) {
+    throw new Error('Could not find todo!');
+    //! send Middleware app.use((err, req, res, next)=> {...})
+  }
+
+  TODOS[todoIndex] = new Todo(TODOS[todoIndex].id, updatedText);
+
+  res.status(201).json({ message: 'Updated!', updatedTodo: TODOS[todoIndex] });
+};
+
+export const deleteTodo: RequestHandler<{ todoId: string }> = (
+  req,
+  res,
+  next
+) => {
+  const todoId = req.params.todoId;
+
+  const todoIndex = TODOS.findIndex((todo) => todo.id === todoId);
+
+  //! guard clause
+  if (todoIndex < 0) {
+    throw new Error('Could not find todo!');
+    //! send Middleware app.use((err, req, res, next)=> {...})
+  }
+
+  //! mutate original Array TODOS
+  TODOS.splice(todoIndex, 1);
+
+  //! response
+  res.status(201).json({
+    message: 'Todo deleted!',
+  });
+};
